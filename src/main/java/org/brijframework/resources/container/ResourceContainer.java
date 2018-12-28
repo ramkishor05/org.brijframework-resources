@@ -106,7 +106,11 @@ public class ResourceContainer implements DefaultContainer {
 
 	@Override
 	public Group load(Object groupKey) {
-		return null;
+		Group group=getCache().get(groupKey);
+		if(group==null){
+			group=new ResourceGroup((String)groupKey);
+		}
+		return group;
 	}
 
 }

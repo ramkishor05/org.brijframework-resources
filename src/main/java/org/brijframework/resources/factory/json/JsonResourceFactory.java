@@ -54,7 +54,7 @@ public class JsonResourceFactory implements ResourceFactory{
 	@Override
 	public Container getContainer() {
 		if(container==null) {
-			this.setContainer(ResourceContainer.getContainer());
+		  this.setContainer(ResourceContainer.getContainer());
 		}
 		return container;
 	}
