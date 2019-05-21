@@ -9,11 +9,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.brijframework.core.resources.DefaultResource;
-import org.brijframework.support.enums.Access;
+import org.brijframework.asm.resources.DefaultResource;
 import org.brijframework.util.accessor.PropertyAccessorUtil;
 import org.brijframework.util.location.PathUtil;
 import org.brijframework.util.reflect.FieldUtil;
+import org.brijframework.util.support.Access;
 
 public class FileResource implements DefaultResource {
 
@@ -68,9 +68,6 @@ public class FileResource implements DefaultResource {
 		return new FileInputStream(getFile());
 	}
 	
-	public String getFileSource() {
-		return new String(getContent());
-	}
 	
 	@Override
 	public String toString() {

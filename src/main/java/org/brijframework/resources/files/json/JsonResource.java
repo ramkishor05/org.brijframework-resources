@@ -8,10 +8,10 @@ import java.util.Map;
 
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.MetaResource;
-import org.brijframework.support.constants.Constants;
 import org.brijframework.util.asserts.AssertMessage;
 import org.brijframework.util.asserts.Assertion;
 import org.brijframework.util.resouces.JSONUtil;
+import org.brijframework.util.support.Constants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +29,7 @@ public class JsonResource extends MetaResource {
 	}
 
 	public JsonResource(File path) {
+		
 		this.setFile(path);
 	}
 	
@@ -44,9 +45,9 @@ public class JsonResource extends MetaResource {
 	public String getJsonResource() {
 		if(jsonresource==null){
 			if(this.getPath()!=null)
-				setJsonResource(getFileSource());
+				setJsonResource(getResource());
 			if(this.getFile()!=null)
-				setJsonResource(getFileSource());
+				setJsonResource(getResource());
 		}
 		return jsonresource;
 	}

@@ -1,5 +1,6 @@
 package org.brijframework.resources.factory.xml;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -7,8 +8,10 @@ import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.ResourceFactory;
+import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.xml.XmlResource;
 import org.brijframework.support.enums.ResourceType;
+import org.brijframework.support.model.Assignable;
 import org.brijframework.util.reflect.InstanceUtil;
 
 public class XmlResourceFactory implements ResourceFactory {
@@ -19,6 +22,7 @@ public class XmlResourceFactory implements ResourceFactory {
 	
 	private static XmlResourceFactory factory;
 
+	@Assignable
 	public static XmlResourceFactory factory() {
 		if (factory == null) {
 			factory = InstanceUtil.getSingletonInstance(XmlResourceFactory.class);
@@ -26,10 +30,19 @@ public class XmlResourceFactory implements ResourceFactory {
 		}
 		return factory;
 	}
-
+	
 	@Override
 	public void load(Resource metaResource) {
-		containers.put(metaResource.getId(), new XmlResource(metaResource));
+		containers.put(metaResource.getId(), (XmlResource)metaResource);
+		getContainer().load(getResourceType().toString()).add(metaResource.getId(), (JsonResource)metaResource);
+		System.err.println("Resource : "+metaResource.getFile());
+	}
+	
+	@Override
+	public XmlResource build(File file) {
+		XmlResource resource = new XmlResource(file);
+		resource.setId(file.getName());
+		return resource;
 	}
 	
 	@Override
@@ -62,6 +75,12 @@ public class XmlResourceFactory implements ResourceFactory {
 	@Override
 	public void setContainer(Container container) {
 		this.container=container;
+	}
+
+	@Override
+	public Collection<JsonResource> getResources(String dir) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -56,7 +56,7 @@ public class XmlResource extends JsonResource{
 	
 	public String getXmlResource() {
 		if(xmlresource==null){
-			xmlresource=getFileSource();
+			xmlresource=getResource();
 		}
 		return xmlresource;
 	}

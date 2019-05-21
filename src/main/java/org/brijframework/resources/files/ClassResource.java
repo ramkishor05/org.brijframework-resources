@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
-import org.brijframework.core.resources.DefaultResource;
+import org.brijframework.asm.resources.DefaultResource;
 
 
 public class ClassResource implements DefaultResource{

@@ -26,11 +26,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.brijframework</groupId>
-			<artifactId>org.brijframework-core</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.brijframework</groupId>
 			<artifactId>org.brijframework-meta</artifactId>
 			<version>0.0.1</version>
 		</dependency>
