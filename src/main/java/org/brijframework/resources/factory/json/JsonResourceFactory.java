@@ -35,7 +35,7 @@ public class JsonResourceFactory implements ResourceFactory{
 	public void load(Resource metaResource){
 		getCache().put(metaResource.getId(), (JsonResource)metaResource);
 		getContainer().load(getResourceType().toString()).add(metaResource.getId(), (JsonResource)metaResource);
-		System.err.println("Resource : "+metaResource.getFile());
+		System.err.println("Resource     : "+metaResource.getFile());
 	}
 
 	@Override
@@ -65,8 +65,8 @@ public class JsonResourceFactory implements ResourceFactory{
 			if(paths.length<1 ) {
 				continue;
 			}
-			String path=dirPath.replace('/', '\\');
-			if(paths[1].startsWith(path)) {
+			System.out.println(dirPath.replace('/', '\\')+"="+paths[1]);
+			if(paths[1].startsWith(dirPath.replace('/', '\\'))) {
 				list.add(resource);
 			}
 		}
