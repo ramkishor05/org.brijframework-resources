@@ -35,6 +35,7 @@ public class ResourceContainer implements DefaultContainer {
 	public static final String META_INF = "META-INF";
 	public static final String All_INF = "";
 	public static final String COM_INF = "comman";
+	
 
 	private ConcurrentHashMap<Object, Group> cache = new ConcurrentHashMap<>();
 	private static ResourceContainer container;
