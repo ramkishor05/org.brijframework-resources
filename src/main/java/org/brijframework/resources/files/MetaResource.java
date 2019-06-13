@@ -33,6 +33,4 @@ public class MetaResource extends FileResource {
 		}
 		super.setPath(path);
 	}
-
-	
 }

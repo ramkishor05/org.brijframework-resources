@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.brijframework.factories.Factory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.json.JsonResource;
-import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.resouces.ResourcesUtil;
 
 public interface ResourceFactory extends Factory {
@@ -19,7 +18,7 @@ public interface ResourceFactory extends Factory {
 	public static final String All_INF = "";
 	public static final String COM_INF = "comman";
 	
-	public ResourceType getResourceType();
+	public String getResourceType();
 	
 	public Collection<? extends Resource> getResources();
 
@@ -29,7 +28,7 @@ public interface ResourceFactory extends Factory {
 		this.clear();
 		try {
 			for (File file : ResourcesUtil.getResources(All_INF)) {
-				if(file.getName().endsWith(getResourceType().toString()) && !isIgnoreFile(file)) {
+				if(file.getName().endsWith(getResourceType()) && !isIgnoreFile(file)) {
 					load(build(file));
 				}
 			}

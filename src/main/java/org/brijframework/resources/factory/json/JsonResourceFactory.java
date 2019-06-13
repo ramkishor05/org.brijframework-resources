@@ -51,7 +51,7 @@ public class JsonResourceFactory implements ResourceFactory{
 	}
 
 	@Override
-	public ResourceType getResourceType() {
+	public String getResourceType() {
 		return ResourceType.JSON;
 	}
 	
