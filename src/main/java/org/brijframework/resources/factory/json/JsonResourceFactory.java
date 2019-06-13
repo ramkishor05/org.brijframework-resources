@@ -65,7 +65,6 @@ public class JsonResourceFactory implements ResourceFactory{
 			if(paths.length<1 ) {
 				continue;
 			}
-			System.out.println(dirPath.replace('/', '\\')+"="+paths[1]);
 			if(paths[1].startsWith(dirPath.replace('/', '\\'))) {
 				list.add(resource);
 			}
