@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.ResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.support.enums.ResourceType;
@@ -26,7 +25,6 @@ public class JsonResourceFactory implements ResourceFactory{
 	public static JsonResourceFactory factory() {
 		if (factory == null) {
 			factory = InstanceUtil.getSingletonInstance(JsonResourceFactory.class);
-			factory.loadFactory();
 		}
 		return factory;
 	}
@@ -83,9 +81,6 @@ public class JsonResourceFactory implements ResourceFactory{
 
 	@Override
 	public Container getContainer() {
-		if(container==null) {
-		  this.setContainer(ResourceContainer.getContainer());
-		}
 		return container;
 	}
 

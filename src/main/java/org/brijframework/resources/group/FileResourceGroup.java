@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.brijframework.asm.group.DefaultGroup;
 import org.brijframework.resources.Resource;
 
-public class ResourceGroup implements DefaultGroup {
+public class FileResourceGroup implements DefaultGroup {
 	/**
 	 * 
 	 */
@@ -14,7 +14,7 @@ public class ResourceGroup implements DefaultGroup {
 	private Object id;
 	private ConcurrentHashMap<String, Resource> cache = new ConcurrentHashMap<>();
 
-	public ResourceGroup(String id) {
+	public FileResourceGroup(String id) {
 		this.setGroupKey(id);
 	}
 

@@ -6,7 +6,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.ResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.prop.PropResource;
@@ -51,7 +50,7 @@ public class PropResourceFactory implements ResourceFactory {
 
 	@Override
 	public String getResourceType() {
-		return ResourceType.XML;
+		return ResourceType.PROP;
 	}
 
 	@Override
@@ -65,9 +64,6 @@ public class PropResourceFactory implements ResourceFactory {
 
 	@Override
 	public Container getContainer() {
-		if(container==null) {
-			this.setContainer(ResourceContainer.getContainer());
-		}
 		return container;
 	}
 

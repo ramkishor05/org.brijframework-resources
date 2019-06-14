@@ -65,9 +65,6 @@ public class XmlResourceFactory implements ResourceFactory {
 
 	@Override
 	public Container getContainer() {
-		if(container==null) {
-			this.setContainer(ResourceContainer.getContainer());
-		}
 		return container;
 	}
 
@@ -78,7 +75,6 @@ public class XmlResourceFactory implements ResourceFactory {
 
 	@Override
 	public Collection<JsonResource> getResources(String dir) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
