@@ -1,4 +1,4 @@
-package org.brijframework.resources.factory.xml;
+package org.brijframework.resources.factory.yaml;
 
 import java.io.File;
 import java.util.Collection;
@@ -8,58 +8,58 @@ import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.ResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
-import org.brijframework.resources.files.xml.XmlResource;
+import org.brijframework.resources.files.yaml.YamlResource;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.support.model.Assignable;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class XmlResourceFactory implements ResourceFactory {
+public class YamlResourceFactory implements ResourceFactory {
 	
-	private ConcurrentHashMap<Object, XmlResource> containers = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<Object, YamlResource> cache = new ConcurrentHashMap<>();
 	
 	private Container container;
 	
-	private static XmlResourceFactory factory;
+	private static YamlResourceFactory factory;
 
 	@Assignable
-	public static XmlResourceFactory factory() {
+	public static YamlResourceFactory factory() {
 		if (factory == null) {
-			factory = InstanceUtil.getSingletonInstance(XmlResourceFactory.class);
+			factory = InstanceUtil.getSingletonInstance(YamlResourceFactory.class);
 		}
 		return factory;
 	}
 	
 	@Override
 	public void load(Resource metaResource) {
-		containers.put(metaResource.getId(), (XmlResource)metaResource);
-		getContainer().load(getResourceType()).add(metaResource.getId(), (JsonResource)metaResource);
-		System.err.println("Resource : "+metaResource.getFile());
+		cache.put(metaResource.getId(), (YamlResource)metaResource);
+		getContainer().load(getResourceType()).add(metaResource.getId(), (YamlResource)metaResource);
+		System.err.println("Resource     : "+metaResource.getId()+" | "+metaResource.getFile());
 	}
 	
 	@Override
-	public XmlResource build(File file) {
-		XmlResource resource = new XmlResource(file);
+	public YamlResource build(File file) {
+		YamlResource resource = new YamlResource(file);
 		resource.setId(file.getName());
 		return resource;
 	}
 	
 	@Override
-	public ConcurrentHashMap<Object, XmlResource> getCache() {
-		return containers;
+	public ConcurrentHashMap<Object, YamlResource> getCache() {
+		return cache;
 	}
 
 	@Override
 	public String getResourceType() {
-		return ResourceType.XML;
+		return ResourceType.YML;
 	}
 
 	@Override
-	public Collection<XmlResource> getResources() {
-		return containers.values();
+	public Collection<YamlResource> getResources() {
+		return getCache().values();
 	}
 
-	public XmlResource getResource(String key) {
-		return containers.get(key);
+	public YamlResource getResource(String key) {
+		return getCache().get(key);
 	}
 
 	@Override
