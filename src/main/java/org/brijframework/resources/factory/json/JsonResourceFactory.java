@@ -7,13 +7,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.factory.ResourceFactory;
+import org.brijframework.resources.factory.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.support.model.Assignable;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class JsonResourceFactory implements ResourceFactory{
+public class JsonResourceFactory implements FileResourceFactory{
 	
 	private ConcurrentHashMap<Object, JsonResource> cache = new ConcurrentHashMap<>();
 	
@@ -33,13 +33,13 @@ public class JsonResourceFactory implements ResourceFactory{
 	public void load(Resource metaResource){
 		getCache().put(metaResource.getId(), (JsonResource)metaResource);
 		getContainer().load(getResourceType().toString()).add(metaResource.getId(), (JsonResource)metaResource);
-		System.err.println("Resource     : "+metaResource.getFile());
 	}
 
 	@Override
 	public JsonResource build(File file) {
 		JsonResource resource=new JsonResource(file);
-		resource.setId(file.toString());
+		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
+		resource.setId(id);
 		return resource;
 	}
 

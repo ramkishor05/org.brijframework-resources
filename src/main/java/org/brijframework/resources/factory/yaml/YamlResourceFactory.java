@@ -6,14 +6,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.factory.ResourceFactory;
+import org.brijframework.resources.factory.EnvResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.yaml.YamlResource;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.support.model.Assignable;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class YamlResourceFactory implements ResourceFactory {
+public class YamlResourceFactory implements EnvResourceFactory {
 	
 	private ConcurrentHashMap<Object, YamlResource> cache = new ConcurrentHashMap<>();
 	
@@ -33,13 +33,13 @@ public class YamlResourceFactory implements ResourceFactory {
 	public void load(Resource metaResource) {
 		cache.put(metaResource.getId(), (YamlResource)metaResource);
 		getContainer().load(getResourceType()).add(metaResource.getId(), (YamlResource)metaResource);
-		System.err.println("Resource     : "+metaResource.getId()+" | "+metaResource.getFile());
 	}
 	
 	@Override
 	public YamlResource build(File file) {
 		YamlResource resource = new YamlResource(file);
-		resource.setId(file.getName());
+		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
+		resource.setId(id);
 		return resource;
 	}
 	

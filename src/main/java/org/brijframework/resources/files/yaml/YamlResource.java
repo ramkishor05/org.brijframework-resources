@@ -3,15 +3,14 @@ package org.brijframework.resources.files.yaml;
 import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.brijframework.resources.files.MapResource;
 import org.brijframework.resources.files.MetaResource;
-import org.yaml.snakeyaml.Yaml;
+import org.brijframework.util.objects.PropertiesUtil;
+import org.brijframework.util.resouces.YamlUtil;
 
-public class YamlResource extends MetaResource {
+public class YamlResource extends MetaResource implements MapResource{
 
 	public YamlResource(String path) {
 		super(path);
@@ -24,51 +23,15 @@ public class YamlResource extends MetaResource {
 	public YamlResource() {
 	}
 	
+	@Override
 	public Properties getProperties(){
-		Properties properties=new Properties();
-		HashMap<String, Object> map= getHashMap();
-		String parentKey="";
-		fillMap(properties, parentKey, map);
-		return properties;
+		return PropertiesUtil.getProperties(getHashMap());
 	}
 	
-	@SuppressWarnings("unchecked")
-	private void fillMap(Properties properties,String parentKey,Map<String, Object> map) {
-		for(Entry<String, Object> entry:map.entrySet()) {
-			if(entry.getValue() instanceof Map) {
-				fillMap(properties,parentKey.isEmpty()?entry.getKey(): parentKey+"."+entry.getKey(), (Map<String, Object>)entry.getValue()); 
-			}else if(entry.getValue() instanceof List<?>){
-				fillList(properties,parentKey.isEmpty()?entry.getKey(): parentKey+"."+entry.getKey(), (List<Object>)entry.getValue()); 
-			}else {
-				properties.put(parentKey.isEmpty()?entry.getKey():parentKey+"."+entry.getKey(), entry.getValue());
-			}
-		}
-		if(!parentKey.isEmpty())
-		properties.put(parentKey, map);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void fillList(Properties properties,String parentKey,List<Object> list) {
-		int index=0;
-		for(Object object:list) {
-			if(object instanceof Map) {
-				fillMap(properties, parentKey+"["+index+"]", (Map<String, Object>)object); 
-			}else if(object instanceof List<?>){
-				fillList(properties, parentKey+"["+index+"]", (List<Object>)object); 
-			}else {
-				properties.put(parentKey+"["+index+"]", object);
-			}
-			index++;
-		}
-		if(!parentKey.isEmpty())
-		properties.put(parentKey, list);
-	}
-	
-	@SuppressWarnings("unchecked")
+	@Override
 	public HashMap<String, Object> getHashMap(){
-		Yaml yaml = new Yaml();  
 		try( InputStream in = getInputStream()) {
-            return yaml.loadAs( in, HashMap.class );
+            return YamlUtil.getHashMap(in);
         }catch (Exception e) {
 			e.printStackTrace();
 		}

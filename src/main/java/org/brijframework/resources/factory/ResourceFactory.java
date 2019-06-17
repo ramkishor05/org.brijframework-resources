@@ -5,18 +5,13 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.brijframework.asm.factories.FileFactory;
 import org.brijframework.factories.Factory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.util.resouces.ResourcesUtil;
 
-public interface ResourceFactory extends Factory {
-	public static final String MANIFEST_MF = "MANIFEST.MF";
-	public static final String POM_PROPERTIES = "pom.properties";
-	public static final String POM_XML = "pom.xml";
-	public static final String META_INF = "META-INF";
-	public static final String All_INF = "";
-	public static final String COM_INF = "comman";
+public interface ResourceFactory extends Factory, FileFactory {
 	
 	public String getResourceType();
 	
@@ -25,16 +20,23 @@ public interface ResourceFactory extends Factory {
 	void load(Resource metaResource);
 	
 	default ResourceFactory loadFactory() {
+		System.err.println(this.getClass().getSimpleName()+ " loading... ");
 		this.clear();
 		try {
 			for (File file : ResourcesUtil.getResources(All_INF)) {
 				if(file.getName().endsWith(getResourceType()) && !isIgnoreFile(file)) {
-					load(build(file));
+					Resource resource=build(file);
+					if(resource==null) {
+						continue;
+					}
+					System.err.println("Resource     : "+resource.getId());
+					load(resource);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.err.println(this.getClass().getSimpleName()+ " done... ");
 		return this;
 	}
 
@@ -57,4 +59,6 @@ public interface ResourceFactory extends Factory {
 	}
 
 	Collection<JsonResource> getResources(String dir);
+	
+	
 }

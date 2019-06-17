@@ -2,11 +2,13 @@ package org.brijframework.resources.files.prop;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
+import org.brijframework.resources.files.MapResource;
 import org.brijframework.resources.files.MetaResource;
 
-public class PropResource extends MetaResource {
+public class PropResource extends MetaResource implements MapResource{
 
 	public PropResource(String path) {
 		super(path);
@@ -28,6 +30,10 @@ public class PropResource extends MetaResource {
 		}
 		return properties;
 	}
-	
+
+	@Override
+	public Map<String, Object> getHashMap() {
+		return null;
+	}
 
 }
