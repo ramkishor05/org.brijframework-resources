@@ -1,18 +1,18 @@
 package org.brijframework.resources.context;
 
-import org.brijframework.asm.context.DefaultContainerContext;
+import org.brijframework.asm.context.AbstractModuleContext;
 import org.brijframework.resources.container.ResourceContainer;
-import org.brijframework.support.util.SupportUtil;
+import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
 
-public class ResourceContext extends DefaultContainerContext{
+public class ResourceContext extends AbstractModuleContext{
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void init() {
 		try {
 			ReflectionUtils.getClassListFromExternal().forEach(cls->{
-				if(ResourceContainer.class.isAssignableFrom(cls)) {
+				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}
 			});
@@ -21,7 +21,7 @@ public class ResourceContext extends DefaultContainerContext{
 		}
 		try {
 			ReflectionUtils.getClassListFromInternal().forEach(cls->{
-				if(ResourceContainer.class.isAssignableFrom(cls)) {
+				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}
 			});
@@ -32,16 +32,17 @@ public class ResourceContext extends DefaultContainerContext{
 	
 	@Override
 	public void startup() {
-		System.err.println("ResourceContext loading start.");
-		SupportUtil.getDepandOnSortedClassList(getClassList()).forEach((container) -> {
-			loadContainer(container);
-		});
-		System.err.println("ResourceContext loading done.");
+		System.err.println("ResourceContext startup processing...");
+		super.startup();
+		System.err.println("ResourceContext startup completed....");
 	}
 
 
 	@Override
 	public void destory() {
+		System.err.println("ResourceContext destory processing...");
+		super.destory();
+		System.err.println("ResourceContext destory completed....");
 	}
 
 }
