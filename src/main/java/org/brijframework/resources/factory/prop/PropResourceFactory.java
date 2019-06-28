@@ -9,8 +9,8 @@ import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.EnvResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.prop.PropResource;
+import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
-import org.brijframework.support.model.Assignable;
 import org.brijframework.util.reflect.InstanceUtil;
 
 public class PropResourceFactory implements EnvResourceFactory {

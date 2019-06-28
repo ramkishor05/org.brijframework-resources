@@ -11,7 +11,7 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.FileResourceFactory;
 import org.brijframework.resources.group.FileResourceGroup;
-import org.brijframework.support.model.Assignable;
+import org.brijframework.support.config.Assignable;
 import org.brijframework.util.asserts.AssertMessage;
 import org.brijframework.util.asserts.Assertion;
 import org.brijframework.util.reflect.InstanceUtil;
