@@ -63,7 +63,7 @@ public class JsonResourceFactory implements FileResourceFactory{
 			if(paths.length<1 ) {
 				continue;
 			}
-			if(paths[1].startsWith(dirPath.replace('/', '\\'))) {
+			if(paths[1].startsWith(dirPath.replace('/', '\\').replace('\\', '\\'))) {
 				list.add(resource);
 			}
 		}

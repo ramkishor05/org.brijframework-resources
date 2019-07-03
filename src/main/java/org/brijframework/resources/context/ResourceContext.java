@@ -31,9 +31,9 @@ public class ResourceContext extends AbstractModuleContext{
 	}
 	
 	@Override
-	public void startup() {
+	public void start() {
 		System.err.println("ResourceContext startup processing...");
-		super.startup();
+		super.start();
 		System.err.println("ResourceContext startup completed....");
 	}
 
