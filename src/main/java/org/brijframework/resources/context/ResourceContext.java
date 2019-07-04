@@ -39,9 +39,9 @@ public class ResourceContext extends AbstractModuleContext{
 
 
 	@Override
-	public void destory() {
+	public void stop() {
 		System.err.println("ResourceContext destory processing...");
-		super.destory();
+		super.stop();
 		System.err.println("ResourceContext destory completed....");
 	}
 
