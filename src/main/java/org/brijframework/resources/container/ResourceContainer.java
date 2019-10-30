@@ -1,6 +1,6 @@
 package org.brijframework.resources.container;
 
-import org.brijframework.asm.container.DefaultContainer;
+import org.brijframework.container.impl.DefaultContainer;
 
 public interface ResourceContainer extends DefaultContainer {
 

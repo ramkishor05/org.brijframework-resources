@@ -3,7 +3,7 @@ package org.brijframework.resources.files;
 import java.util.Map;
 import java.util.Properties;
 
-import org.brijframework.asm.resources.DefaultResource;
+import org.brijframework.resources.impl.DefaultResource;
 
 public interface MapResource extends DefaultResource  {
 

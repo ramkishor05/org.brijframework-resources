@@ -3,7 +3,7 @@ package org.brijframework.resources.group;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.brijframework.asm.group.DefaultGroup;
+import org.brijframework.group.impl.DefaultGroup;
 import org.brijframework.resources.Resource;
 
 public class FileResourceGroup implements DefaultGroup {

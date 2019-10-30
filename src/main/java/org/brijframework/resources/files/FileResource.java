@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.brijframework.asm.resources.DefaultResource;
+import org.brijframework.resources.impl.DefaultResource;
 import org.brijframework.util.accessor.PropertyAccessorUtil;
 import org.brijframework.util.location.PathUtil;
 import org.brijframework.util.reflect.FieldUtil;

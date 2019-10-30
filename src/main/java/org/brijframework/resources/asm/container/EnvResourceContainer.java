@@ -1,6 +1,6 @@
 package org.brijframework.resources.asm.container;
 
-import org.brijframework.asm.container.AbstractContainer;
+import org.brijframework.container.impl.AbstractContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.EnvResourceFactory;

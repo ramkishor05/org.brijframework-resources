@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.brijframework.asm.container.AbstractContainer;
+import org.brijframework.container.impl.AbstractContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.FileResourceFactory;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.brijframework.asm.factories.FileFactory;
 import org.brijframework.factories.Factory;
+import org.brijframework.factories.impl.FileFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.util.resouces.ResourcesUtil;
