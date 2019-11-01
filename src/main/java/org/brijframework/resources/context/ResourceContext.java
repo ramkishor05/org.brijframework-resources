@@ -1,6 +1,6 @@
 package org.brijframework.resources.context;
 
-import org.brijframework.context.impl.AbstractModuleContext;
+import org.brijframework.context.module.impl.AbstractModuleContext;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
