@@ -1,4 +1,4 @@
-package org.brijframework.resources.asm.container;
+package org.brijframework.resources.container.impl;
 
 import org.brijframework.container.impl.AbstractContainer;
 import org.brijframework.group.Group;

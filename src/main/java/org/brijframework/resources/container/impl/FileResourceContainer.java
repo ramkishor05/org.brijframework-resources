@@ -1,4 +1,4 @@
-package org.brijframework.resources.asm.container;
+package org.brijframework.resources.container.impl;
 
 import java.io.File;
 import java.net.URISyntaxException;
