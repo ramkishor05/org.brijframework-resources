@@ -5,6 +5,7 @@ import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
 
+
 public class ResourceContext extends AbstractModuleContext{
 	
 	@SuppressWarnings("unchecked")
@@ -29,20 +30,4 @@ public class ResourceContext extends AbstractModuleContext{
 			e.printStackTrace();
 		}
 	}
-	
-	@Override
-	public void start() {
-		System.err.println("ResourceContext startup processing...");
-		super.start();
-		System.err.println("ResourceContext startup completed....");
-	}
-
-
-	@Override
-	public void stop() {
-		System.err.println("ResourceContext destory processing...");
-		super.stop();
-		System.err.println("ResourceContext destory completed....");
-	}
-
 }

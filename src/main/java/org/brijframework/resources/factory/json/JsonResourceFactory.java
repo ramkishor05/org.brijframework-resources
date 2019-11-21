@@ -36,9 +36,9 @@ public class JsonResourceFactory implements FileResourceFactory{
 	}
 
 	@Override
-	public JsonResource build(File file) {
+	public JsonResource build(String id, File file) {
 		JsonResource resource=new JsonResource(file);
-		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
+		
 		resource.setId(id);
 		return resource;
 	}

@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.brijframework.container.impl.AbstractContainer;
+import org.brijframework.container.impl.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.FileResourceFactory;
@@ -19,7 +19,7 @@ import org.brijframework.util.reflect.ReflectionUtils;
 import org.brijframework.util.resouces.ResourcesUtil;
 import org.brijframework.util.text.StringUtil;
 
-public class FileResourceContainer extends AbstractContainer implements ResourceContainer{
+public class FileResourceContainer extends AbstractModuleContainer implements ResourceContainer{
 
 	public static final String MANIFEST_MF = "MANIFEST.MF";
 	public static final String POM_PROPERTIES = "pom.properties";

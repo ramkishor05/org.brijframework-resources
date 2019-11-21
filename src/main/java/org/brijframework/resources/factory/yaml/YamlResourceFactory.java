@@ -36,9 +36,8 @@ public class YamlResourceFactory implements EnvResourceFactory {
 	}
 	
 	@Override
-	public YamlResource build(File file) {
+	public YamlResource build(String id, File file) {
 		YamlResource resource = new YamlResource(file);
-		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
 		resource.setId(id);
 		return resource;
 	}

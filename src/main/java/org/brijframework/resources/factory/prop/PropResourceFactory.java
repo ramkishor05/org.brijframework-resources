@@ -36,9 +36,8 @@ public class PropResourceFactory implements EnvResourceFactory {
 	}
 	
 	@Override
-	public PropResource build(File file) {
+	public PropResource build(String id, File file) {
 		PropResource resource = new PropResource(file);
-		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
 		resource.setId(id);
 		return resource;
 	}

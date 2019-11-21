@@ -36,9 +36,8 @@ public class XmlResourceFactory implements FileResourceFactory {
 	}
 	
 	@Override
-	public XmlResource build(File file) {
+	public XmlResource build(String id, File file) {
 		XmlResource resource = new XmlResource(file);
-		String id=file.getAbsolutePath().contains("classes")? file.getAbsolutePath().split("classes")[1]: file.getAbsolutePath();
 		resource.setId(id);
 		return resource;
 	}

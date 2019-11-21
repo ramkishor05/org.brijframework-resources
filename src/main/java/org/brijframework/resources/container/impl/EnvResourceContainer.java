@@ -1,6 +1,6 @@
 package org.brijframework.resources.container.impl;
 
-import org.brijframework.container.impl.AbstractContainer;
+import org.brijframework.container.impl.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.EnvResourceFactory;
@@ -11,7 +11,7 @@ import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
 
 @DepandOn(depand=FileResourceContainer.class)
-public class EnvResourceContainer extends AbstractContainer implements ResourceContainer{
+public class EnvResourceContainer extends AbstractModuleContainer implements ResourceContainer{
 
 	private static EnvResourceContainer container;
 

@@ -9,6 +9,8 @@ import org.brijframework.factories.Factory;
 import org.brijframework.factories.impl.FileFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.json.JsonResource;
+import org.brijframework.resources.locator.ResourceLocator;
+import org.brijframework.util.printer.ConsolePrint;
 import org.brijframework.util.resouces.ResourcesUtil;
 
 public interface ResourceFactory extends Factory, FileFactory {
@@ -20,23 +22,29 @@ public interface ResourceFactory extends Factory, FileFactory {
 	void load(Resource metaResource);
 	
 	default ResourceFactory loadFactory() {
-		System.err.println(this.getClass().getSimpleName()+ " loading... ");
+		ConsolePrint.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunching factory to load resource");
 		this.clear();
 		try {
 			for (File file : ResourcesUtil.getResources(All_INF)) {
 				if(file.getName().endsWith(getResourceType()) && !isIgnoreFile(file)) {
-					Resource resource=build(file);
+					String id=null;
+					if(file.getAbsolutePath().contains("classes")) {
+						id=ResourceLocator.CLASSPATH.getLocator()+file.getAbsolutePath().split("classes")[1];
+					}else {
+						id=ResourceLocator.FILEPATH.getLocator()+file.getAbsolutePath();
+					}
+					Resource resource=build(id,file);
 					if(resource==null) {
 						continue;
 					}
-					System.err.println("Resource     : "+resource.getId());
+					ConsolePrint.screen("Resource ","Load resource with id : "+resource.getId());
 					load(resource);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.err.println(this.getClass().getSimpleName()+ " done... ");
+		ConsolePrint.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunched factory to load resource");
 		return this;
 	}
 
@@ -48,7 +56,7 @@ public interface ResourceFactory extends Factory, FileFactory {
 		return this;
 	}
 
-	public Resource build(File file);
+	public Resource build(String id, File file);
 	
 	default boolean isIgnoreFile(File file) {
 		if (MANIFEST_MF.equalsIgnoreCase(file.getName()) || POM_PROPERTIES.equalsIgnoreCase(file.getName())
@@ -59,6 +67,6 @@ public interface ResourceFactory extends Factory, FileFactory {
 	}
 
 	Collection<JsonResource> getResources(String dir);
-	
+
 	
 }
