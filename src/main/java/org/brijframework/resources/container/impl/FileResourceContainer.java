@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.brijframework.container.impl.AbstractModuleContainer;
+import org.brijframework.container.impl.module.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.FileResourceFactory;
@@ -44,7 +44,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 		try {
 			ReflectionUtils.getClassListFromExternal().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
-					register((Class<? extends FileResourceFactory>) cls);
+					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}
 			});
 		} catch (Exception e) {
@@ -53,7 +53,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 		try {
 			ReflectionUtils.getClassListFromInternal().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
-					register((Class<? extends FileResourceFactory>) cls);
+					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}
 			});
 		} catch (Exception e) {

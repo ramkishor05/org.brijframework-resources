@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
+import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
@@ -13,9 +14,9 @@ import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class XmlResourceFactory implements FileResourceFactory {
+public class XmlResourceFactory extends AbstractFactory<String,XmlResource> implements FileResourceFactory<String,XmlResource> {
 	
-	private ConcurrentHashMap<Object, XmlResource> cache = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<String, XmlResource> cache = new ConcurrentHashMap<>();
 	
 	private Container container;
 	
@@ -43,7 +44,7 @@ public class XmlResourceFactory implements FileResourceFactory {
 	}
 	
 	@Override
-	public ConcurrentHashMap<Object, XmlResource> getCache() {
+	public ConcurrentHashMap<String, XmlResource> getCache() {
 		return cache;
 	}
 
@@ -74,6 +75,18 @@ public class XmlResourceFactory implements FileResourceFactory {
 	@Override
 	public Collection<JsonResource> getResources(String dir) {
 		return null;
+	}
+
+	@Override
+	protected void preregister(String key, XmlResource value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void postregister(String key, XmlResource value) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

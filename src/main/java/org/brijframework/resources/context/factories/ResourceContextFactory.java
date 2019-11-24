@@ -1,6 +1,6 @@
 package org.brijframework.resources.context.factories;
 
-import org.brijframework.factories.impl.AbstractBootstrapFactory;
+import org.brijframework.factories.impl.bootstrap.AbstractBootstrapFactory;
 import org.brijframework.resources.context.ResourceContext;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.support.config.OrderOn;

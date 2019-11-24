@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
+import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.EnvResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
@@ -13,9 +14,9 @@ import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class PropResourceFactory implements EnvResourceFactory {
+public class PropResourceFactory extends AbstractFactory<String,PropResource> implements EnvResourceFactory<String,PropResource> {
 	
-	private ConcurrentHashMap<Object, PropResource> cache = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<String, PropResource> cache = new ConcurrentHashMap<>();
 	
 	private Container container;
 	
@@ -43,7 +44,7 @@ public class PropResourceFactory implements EnvResourceFactory {
 	}
 	
 	@Override
-	public ConcurrentHashMap<Object, PropResource> getCache() {
+	public ConcurrentHashMap<String, PropResource> getCache() {
 		return cache;
 	}
 
@@ -74,6 +75,18 @@ public class PropResourceFactory implements EnvResourceFactory {
 	@Override
 	public Collection<JsonResource> getResources(String dir) {
 		return null;
+	}
+
+	@Override
+	protected void preregister(String key, PropResource value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void postregister(String key, PropResource value) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

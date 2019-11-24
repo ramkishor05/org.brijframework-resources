@@ -1,6 +1,6 @@
 package org.brijframework.resources.container.impl;
 
-import org.brijframework.container.impl.AbstractModuleContainer;
+import org.brijframework.container.impl.module.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.EnvResourceFactory;
@@ -29,7 +29,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 		try {
 			ReflectionUtils.getClassListFromExternal().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
-					register((Class<? extends EnvResourceFactory>) cls);
+					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}
 			});
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 		try {
 			ReflectionUtils.getClassListFromInternal().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
-					register((Class<? extends EnvResourceFactory>) cls);
+					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}
 			});
 		} catch (Exception e) {

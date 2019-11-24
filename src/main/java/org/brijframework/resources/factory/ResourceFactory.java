@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.brijframework.factories.Factory;
 import org.brijframework.factories.impl.FileFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.files.json.JsonResource;
@@ -13,7 +12,7 @@ import org.brijframework.resources.locator.ResourceLocator;
 import org.brijframework.util.printer.ConsolePrint;
 import org.brijframework.util.resouces.ResourcesUtil;
 
-public interface ResourceFactory extends Factory, FileFactory {
+public interface ResourceFactory<K,T> extends FileFactory<K,T> {
 	
 	public String getResourceType();
 	
@@ -21,7 +20,7 @@ public interface ResourceFactory extends Factory, FileFactory {
 
 	void load(Resource metaResource);
 	
-	default ResourceFactory loadFactory() {
+	default ResourceFactory<K,T> loadFactory() {
 		ConsolePrint.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunching factory to load resource");
 		this.clear();
 		try {
@@ -48,14 +47,8 @@ public interface ResourceFactory extends Factory, FileFactory {
 		return this;
 	}
 
-	ConcurrentHashMap<Object, ? extends Resource> getCache();
+	ConcurrentHashMap<K,T> getCache();
 	
-	@Override
-	default ResourceFactory clear() {
-		this.getCache().clear();
-		return this;
-	}
-
 	public Resource build(String id, File file);
 	
 	default boolean isIgnoreFile(File file) {

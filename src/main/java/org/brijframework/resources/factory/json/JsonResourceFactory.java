@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
+import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
@@ -13,9 +14,9 @@ import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class JsonResourceFactory implements FileResourceFactory{
+public class JsonResourceFactory extends AbstractFactory<String,JsonResource> implements FileResourceFactory<String,JsonResource>{
 	
-	private ConcurrentHashMap<Object, JsonResource> cache = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<String, JsonResource> cache = new ConcurrentHashMap<>();
 	
 	private Container container;
 	
@@ -38,13 +39,12 @@ public class JsonResourceFactory implements FileResourceFactory{
 	@Override
 	public JsonResource build(String id, File file) {
 		JsonResource resource=new JsonResource(file);
-		
 		resource.setId(id);
 		return resource;
 	}
 
 	@Override
-	public ConcurrentHashMap<Object, JsonResource> getCache() {
+	public ConcurrentHashMap<String, JsonResource> getCache() {
 		return cache;
 	}
 
@@ -87,6 +87,16 @@ public class JsonResourceFactory implements FileResourceFactory{
 	@Override
 	public void setContainer(Container container) {
 		this.container=container;
+	}
+
+	@Override
+	protected void preregister(String key, JsonResource value) {
+		
+	}
+
+	@Override
+	protected void postregister(String key, JsonResource value) {
+		
 	}
 
 }
