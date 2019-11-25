@@ -1,24 +1,16 @@
 package org.brijframework.resources.factory.json;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentHashMap;
 
-import org.brijframework.container.Container;
-import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.factory.FileResourceFactory;
+import org.brijframework.resources.factory.asm.AbstractResourceFactory;
+import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class JsonResourceFactory extends AbstractFactory<String,JsonResource> implements FileResourceFactory<String,JsonResource>{
-	
-	private ConcurrentHashMap<String, JsonResource> cache = new ConcurrentHashMap<>();
-	
-	private Container container;
+public class JsonResourceFactory extends AbstractResourceFactory<String,JsonResource> implements FileResourceFactory<String,JsonResource>{
 	
 	private static JsonResourceFactory factory;
 
@@ -44,49 +36,8 @@ public class JsonResourceFactory extends AbstractFactory<String,JsonResource> im
 	}
 
 	@Override
-	public ConcurrentHashMap<String, JsonResource> getCache() {
-		return cache;
-	}
-
-	@Override
 	public String getResourceType() {
 		return ResourceType.JSON;
-	}
-	
-	@Override
-	public Collection<JsonResource> getResources(String dir) {
-		String dirPath=dir.startsWith("classpath:")? dir.split("classpath:")[1]: dir;
-		Collection<JsonResource> list=new ArrayList<>();
-		for(JsonResource resource:getCache().values()) {
-			String absolutePath=resource.getFile().getAbsolutePath();
-			String paths[]=absolutePath.split("classes");
-			if(paths.length<1 ) {
-				continue;
-			}
-			if(paths[1].startsWith(dirPath.replace('/', '\\').replace('\\', '\\'))) {
-				list.add(resource);
-			}
-		}
-		return list;
-	}
-
-	@Override
-	public Collection<JsonResource> getResources() {
-		return getCache().values();
-	}
-
-	public JsonResource getResource(String key) {
-		return getCache().get(key);
-	}
-
-	@Override
-	public Container getContainer() {
-		return container;
-	}
-
-	@Override
-	public void setContainer(Container container) {
-		this.container=container;
 	}
 
 	@Override

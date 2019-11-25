@@ -9,7 +9,7 @@ import java.util.Map;
 import org.brijframework.container.impl.module.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
-import org.brijframework.resources.factory.FileResourceFactory;
+import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.group.FileResourceGroup;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.util.asserts.AssertMessage;

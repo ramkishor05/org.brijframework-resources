@@ -1,20 +1,18 @@
 package org.brijframework.resources.factory.yaml;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.brijframework.container.Container;
-import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.factory.EnvResourceFactory;
-import org.brijframework.resources.files.json.JsonResource;
+import org.brijframework.resources.factory.asm.AbstractResourceFactory;
+import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.files.yaml.YamlResource;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class YamlResourceFactory extends AbstractFactory<String,YamlResource>  implements EnvResourceFactory<String,YamlResource> {
+public class YamlResourceFactory extends AbstractResourceFactory<String,YamlResource>  implements EnvResourceFactory<String,YamlResource> {
 	
 	private ConcurrentHashMap<String,YamlResource>cache = new ConcurrentHashMap<>();
 	
@@ -53,11 +51,6 @@ public class YamlResourceFactory extends AbstractFactory<String,YamlResource>  i
 		return ResourceType.YML;
 	}
 
-	@Override
-	public Collection<YamlResource> getResources() {
-		return getCache().values();
-	}
-
 	public YamlResource getResource(String key) {
 		return getCache().get(key);
 	}
@@ -73,20 +66,11 @@ public class YamlResourceFactory extends AbstractFactory<String,YamlResource>  i
 	}
 
 	@Override
-	public Collection<JsonResource> getResources(String dir) {
-		return null;
-	}
-
-	@Override
 	protected void preregister(String key, YamlResource value) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	protected void postregister(String key, YamlResource value) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

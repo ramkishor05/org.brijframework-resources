@@ -1,24 +1,17 @@
 package org.brijframework.resources.factory.xml;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentHashMap;
 
-import org.brijframework.container.Container;
-import org.brijframework.factories.impl.AbstractFactory;
 import org.brijframework.resources.Resource;
-import org.brijframework.resources.factory.FileResourceFactory;
+import org.brijframework.resources.factory.asm.AbstractResourceFactory;
+import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.xml.XmlResource;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
-public class XmlResourceFactory extends AbstractFactory<String,XmlResource> implements FileResourceFactory<String,XmlResource> {
-	
-	private ConcurrentHashMap<String, XmlResource> cache = new ConcurrentHashMap<>();
-	
-	private Container container;
+public class XmlResourceFactory extends AbstractResourceFactory<String,XmlResource> implements FileResourceFactory<String,XmlResource> {
 	
 	private static XmlResourceFactory factory;
 
@@ -44,49 +37,18 @@ public class XmlResourceFactory extends AbstractFactory<String,XmlResource> impl
 	}
 	
 	@Override
-	public ConcurrentHashMap<String, XmlResource> getCache() {
-		return cache;
-	}
-
-	@Override
 	public String getResourceType() {
 		return ResourceType.XML;
 	}
 
 	@Override
-	public Collection<XmlResource> getResources() {
-		return cache.values();
-	}
-
-	public XmlResource getResource(String key) {
-		return cache.get(key);
-	}
-
-	@Override
-	public Container getContainer() {
-		return container;
-	}
-
-	@Override
-	public void setContainer(Container container) {
-		this.container=container;
-	}
-
-	@Override
-	public Collection<JsonResource> getResources(String dir) {
-		return null;
-	}
-
-	@Override
 	protected void preregister(String key, XmlResource value) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void postregister(String key, XmlResource value) {
-		// TODO Auto-generated method stub
 		
 	}
-	
+
 }

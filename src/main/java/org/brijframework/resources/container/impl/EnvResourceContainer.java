@@ -3,7 +3,7 @@ package org.brijframework.resources.container.impl;
 import org.brijframework.container.impl.module.AbstractModuleContainer;
 import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
-import org.brijframework.resources.factory.EnvResourceFactory;
+import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.group.EnvResourceGroup;
 import org.brijframework.support.config.Assignable;
 import org.brijframework.support.config.DepandOn;
