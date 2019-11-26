@@ -6,7 +6,7 @@ import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.asm.AbstractResourceFactory;
 import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.files.prop.PropResource;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
@@ -14,7 +14,7 @@ public class PropResourceFactory extends AbstractResourceFactory<String,PropReso
 	
 	private static PropResourceFactory factory;
 
-	@Assignable
+	@SingletonFactory
 	public static PropResourceFactory factory() {
 		if (factory == null) {
 			factory = InstanceUtil.getSingletonInstance(PropResourceFactory.class);

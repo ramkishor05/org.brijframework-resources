@@ -11,7 +11,7 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.group.FileResourceGroup;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.util.asserts.AssertMessage;
 import org.brijframework.util.asserts.Assertion;
 import org.brijframework.util.reflect.InstanceUtil;
@@ -30,7 +30,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 
 	private static FileResourceContainer container;
 
-	@Assignable
+	@SingletonFactory
 	public static FileResourceContainer getContainer() {
 		if (container == null) {
 			container = InstanceUtil.getSingletonInstance(FileResourceContainer.class);

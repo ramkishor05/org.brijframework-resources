@@ -5,7 +5,7 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.group.EnvResourceGroup;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.config.DepandOn;
 import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
@@ -15,7 +15,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 
 	private static EnvResourceContainer container;
 
-	@Assignable
+	@SingletonFactory
 	public static EnvResourceContainer getContainer() {
 		if (container == null) {
 			container = InstanceUtil.getSingletonInstance(EnvResourceContainer.class);

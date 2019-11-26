@@ -7,7 +7,7 @@ import org.brijframework.resources.factory.asm.AbstractResourceFactory;
 import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
 import org.brijframework.resources.files.xml.XmlResource;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
@@ -15,7 +15,7 @@ public class XmlResourceFactory extends AbstractResourceFactory<String,XmlResour
 	
 	private static XmlResourceFactory factory;
 
-	@Assignable
+	@SingletonFactory
 	public static XmlResourceFactory factory() {
 		if (factory == null) {
 			factory = InstanceUtil.getSingletonInstance(XmlResourceFactory.class);

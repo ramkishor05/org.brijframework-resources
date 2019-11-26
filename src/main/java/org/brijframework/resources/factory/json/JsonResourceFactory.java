@@ -6,7 +6,7 @@ import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.asm.AbstractResourceFactory;
 import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.enums.ResourceType;
 import org.brijframework.util.reflect.InstanceUtil;
 
@@ -14,7 +14,7 @@ public class JsonResourceFactory extends AbstractResourceFactory<String,JsonReso
 	
 	private static JsonResourceFactory factory;
 
-	@Assignable
+	@SingletonFactory
 	public static JsonResourceFactory factory() {
 		if (factory == null) {
 			factory = InstanceUtil.getSingletonInstance(JsonResourceFactory.class);

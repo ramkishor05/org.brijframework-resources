@@ -2,7 +2,7 @@ package org.brijframework.resources.context.factories;
 
 import org.brijframework.factories.impl.bootstrap.AbstractBootstrapFactory;
 import org.brijframework.resources.context.ResourceContext;
-import org.brijframework.support.config.Assignable;
+import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.config.OrderOn;
 import org.brijframework.util.printer.ConsolePrint;
 import org.brijframework.util.reflect.InstanceUtil;
@@ -13,7 +13,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 
     private static ResourceContextFactory factory ;
 	
-	@Assignable
+	@SingletonFactory
 	public static ResourceContextFactory getFactory() {
 		if(factory==null) {
 		    factory=new ResourceContextFactory();
