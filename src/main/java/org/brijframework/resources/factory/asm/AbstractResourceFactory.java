@@ -113,4 +113,10 @@ public abstract class AbstractResourceFactory<K, T extends Resource> extends Abs
 		}
 		return configs;
 	}
+	
+	@Override
+	protected void loadContainer(K key, T value) {
+		
+	}
+
 }
