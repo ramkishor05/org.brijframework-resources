@@ -13,23 +13,23 @@ import org.brijframework.resources.config.impl.ResourceConfigration;
 import org.brijframework.resources.constants.ResourceConstants;
 import org.brijframework.resources.factory.ResourceFactory;
 import org.brijframework.resources.locator.ResourceLocator;
-import org.brijframework.util.printer.ConsolePrint;
+import org.brijframework.util.printer.LoggerConsole;
 import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.resouces.ResourcesUtil;
 
 public abstract class AbstractResourceFactory<K, T extends Resource> extends AbstractFactory<K, T> implements ResourceFactory<K, T>{
 
 	public ResourceFactory<K,T> loadFactory() {
-		ConsolePrint.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunching factory to load resource");
+		LoggerConsole.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunching factory to load resource");
 		this.clear();
 		List<ResourceConfigration> configs=getConfigration();
 		if(configs==null) {
-			ConsolePrint.screen("ResourceConfigration","Invalid Resource configration : "+configs);
+			LoggerConsole.screen("ResourceConfigration","Invalid Resource configration : "+configs);
 			return this;
 		}
 		for(ResourceConfigration modelConfig:configs) {
 			if(!modelConfig.isEnable()) {
-				ConsolePrint.screen("ResourceConfigration","Resource configration disabled found :"+modelConfig.getLocation());
+				LoggerConsole.screen("ResourceConfigration","Resource configration disabled found :"+modelConfig.getLocation());
 				continue;
 			}
 			try {
@@ -46,7 +46,7 @@ public abstract class AbstractResourceFactory<K, T extends Resource> extends Abs
 						if(resource==null) {
 							continue;
 						}
-						ConsolePrint.screen("Resource ","Load resource with id : "+resource.getId());
+						LoggerConsole.screen("Resource ","Load resource with id : "+resource.getId());
 						load(resource);
 					}
 				}
@@ -54,7 +54,7 @@ public abstract class AbstractResourceFactory<K, T extends Resource> extends Abs
 				e.printStackTrace();
 			}
 		}
-		ConsolePrint.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunched factory to load resource");
+		LoggerConsole.screen("ResourceFactory -> "+this.getClass().getSimpleName(),"Lunched factory to load resource");
 		return this;
 	}
 	
@@ -85,9 +85,9 @@ public abstract class AbstractResourceFactory<K, T extends Resource> extends Abs
 		List<ResourceConfigration> configrations=new ArrayList<>();
 		Object resources=getContainer().getContext().getEnvironment().get(ResourceConstants.APPLICATION_RESOURCE_CONFIG);
 		if (resources==null) {
-			ConsolePrint.screen("ResourceConfigration", "Resource configration not found :"+ResourceConstants.APPLICATION_RESOURCE_CONFIG);
+			LoggerConsole.screen("ResourceConfigration", "Resource configration not found :"+ResourceConstants.APPLICATION_RESOURCE_CONFIG);
 		}else {
-			ConsolePrint.screen("ResourceConfigration", "Resource configration found :"+ResourceConstants.APPLICATION_RESOURCE_CONFIG+" | "+resources);
+			LoggerConsole.screen("ResourceConfigration", "Resource configration found :"+ResourceConstants.APPLICATION_RESOURCE_CONFIG+" | "+resources);
 			if(resources instanceof List) {
 				configrations= build((List<Map<String, Object>>)resources);
 			}else if(resources instanceof Map) {
@@ -114,9 +114,4 @@ public abstract class AbstractResourceFactory<K, T extends Resource> extends Abs
 		return configs;
 	}
 	
-	@Override
-	protected void loadContainer(K key, T value) {
-		
-	}
-
 }

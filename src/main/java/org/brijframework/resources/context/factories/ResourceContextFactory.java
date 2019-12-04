@@ -4,7 +4,7 @@ import org.brijframework.factories.impl.bootstrap.AbstractBootstrapFactory;
 import org.brijframework.resources.context.ResourceContext;
 import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.config.OrderOn;
-import org.brijframework.util.printer.ConsolePrint;
+import org.brijframework.util.printer.LoggerConsole;
 import org.brijframework.util.reflect.InstanceUtil;
 import org.brijframework.util.reflect.ReflectionUtils;
 
@@ -24,7 +24,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 	@Override
 	public ResourceContextFactory loadFactory() {
 		try {
-			ConsolePrint.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunching the factory for ResourceContext");
+			LoggerConsole.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunching the factory for ResourceContext");
 			ReflectionUtils.getClassListFromExternal().forEach(cls->{
 				if(ResourceContext.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					ResourceContext resourceContext = (ResourceContext) InstanceUtil.getInstance(cls);
@@ -41,9 +41,9 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 					this.register(resourceContext.getClass().getSimpleName(), resourceContext);
 				}
 			});
-			ConsolePrint.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunched the factory for ResourceContext");
+			LoggerConsole.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunched the factory for ResourceContext");
 		} catch (Exception e) {
-			ConsolePrint.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Error to lunch the factory for ResourceContext");
+			LoggerConsole.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Error to lunch the factory for ResourceContext");
 		}
 		return this;
 	}
