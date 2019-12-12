@@ -14,8 +14,8 @@ import org.brijframework.resources.group.FileResourceGroup;
 import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.util.asserts.AssertMessage;
 import org.brijframework.util.asserts.Assertion;
+import org.brijframework.util.factories.ReflectionFactory;
 import org.brijframework.util.reflect.InstanceUtil;
-import org.brijframework.util.reflect.ReflectionUtils;
 import org.brijframework.util.resouces.ResourcesUtil;
 import org.brijframework.util.text.StringUtil;
 
@@ -42,7 +42,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 	@Override
 	public void init() {
 		try {
-			ReflectionUtils.getClassListFromExternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}
@@ -51,7 +51,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 			e.printStackTrace();
 		}
 		try {
-			ReflectionUtils.getClassListFromInternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}

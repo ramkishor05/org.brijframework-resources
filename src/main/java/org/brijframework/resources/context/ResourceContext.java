@@ -2,8 +2,8 @@ package org.brijframework.resources.context;
 
 import org.brijframework.context.impl.module.AbstractModuleContext;
 import org.brijframework.resources.container.ResourceContainer;
+import org.brijframework.util.factories.ReflectionFactory;
 import org.brijframework.util.reflect.InstanceUtil;
-import org.brijframework.util.reflect.ReflectionUtils;
 
 
 public class ResourceContext extends AbstractModuleContext{
@@ -12,7 +12,7 @@ public class ResourceContext extends AbstractModuleContext{
 	@Override
 	public void init() {
 		try {
-			ReflectionUtils.getClassListFromExternal().forEach(cls->{
+			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls->{
 				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}
@@ -21,7 +21,7 @@ public class ResourceContext extends AbstractModuleContext{
 			e.printStackTrace();
 		}
 		try {
-			ReflectionUtils.getClassListFromInternal().forEach(cls->{
+			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls->{
 				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}

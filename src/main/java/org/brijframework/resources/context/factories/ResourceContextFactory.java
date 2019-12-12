@@ -2,11 +2,11 @@ package org.brijframework.resources.context.factories;
 
 import org.brijframework.factories.impl.bootstrap.AbstractBootstrapFactory;
 import org.brijframework.resources.context.ResourceContext;
-import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.config.OrderOn;
+import org.brijframework.support.config.SingletonFactory;
+import org.brijframework.util.factories.ReflectionFactory;
 import org.brijframework.util.printer.LoggerConsole;
 import org.brijframework.util.reflect.InstanceUtil;
-import org.brijframework.util.reflect.ReflectionUtils;
 
 @OrderOn(1)
 public class ResourceContextFactory extends AbstractBootstrapFactory<String, ResourceContext> {
@@ -25,7 +25,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 	public ResourceContextFactory loadFactory() {
 		try {
 			LoggerConsole.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunching the factory for ResourceContext");
-			ReflectionUtils.getClassListFromExternal().forEach(cls->{
+			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls->{
 				if(ResourceContext.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					ResourceContext resourceContext = (ResourceContext) InstanceUtil.getInstance(cls);
 					resourceContext.start();
@@ -33,7 +33,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 					this.register(resourceContext.getClass().getSimpleName(), resourceContext);
 				}
 			});
-			ReflectionUtils.getClassListFromInternal().forEach(cls->{
+			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls->{
 				if(ResourceContext.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					ResourceContext resourceContext = (ResourceContext) InstanceUtil.getInstance(cls);
 					resourceContext.start();

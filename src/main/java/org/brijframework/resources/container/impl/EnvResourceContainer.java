@@ -5,10 +5,10 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.group.EnvResourceGroup;
-import org.brijframework.support.config.SingletonFactory;
 import org.brijframework.support.config.DepandOn;
+import org.brijframework.support.config.SingletonFactory;
+import org.brijframework.util.factories.ReflectionFactory;
 import org.brijframework.util.reflect.InstanceUtil;
-import org.brijframework.util.reflect.ReflectionUtils;
 
 @DepandOn(depand=FileResourceContainer.class)
 public class EnvResourceContainer extends AbstractModuleContainer implements ResourceContainer{
@@ -27,7 +27,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 	@Override
 	public void init() {
 		try {
-			ReflectionUtils.getClassListFromExternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}
@@ -36,7 +36,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 			e.printStackTrace();
 		}
 		try {
-			ReflectionUtils.getClassListFromInternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}
