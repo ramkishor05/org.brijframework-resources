@@ -8,8 +8,8 @@ import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.asm.AbstractResourceFactory;
 import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.files.yaml.YamlResource;
-import org.brijframework.support.config.SingletonFactory;
-import org.brijframework.support.enums.ResourceType;
+import org.brijframework.support.constants.ResourceType;
+import org.brijframework.support.factories.SingletonFactory;
 import org.brijframework.util.reflect.InstanceUtil;
 
 public class YamlResourceFactory extends AbstractResourceFactory<String,YamlResource>  implements EnvResourceFactory<String,YamlResource> {

@@ -6,8 +6,8 @@ import org.brijframework.resources.Resource;
 import org.brijframework.resources.factory.asm.AbstractResourceFactory;
 import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.files.json.JsonResource;
-import org.brijframework.support.config.SingletonFactory;
-import org.brijframework.support.enums.ResourceType;
+import org.brijframework.support.constants.ResourceType;
+import org.brijframework.support.factories.SingletonFactory;
 import org.brijframework.util.reflect.InstanceUtil;
 
 public class JsonResourceFactory extends AbstractResourceFactory<String,JsonResource> implements FileResourceFactory<String,JsonResource>{

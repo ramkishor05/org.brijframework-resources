@@ -5,8 +5,8 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.env.EnvResourceFactory;
 import org.brijframework.resources.group.EnvResourceGroup;
-import org.brijframework.support.config.DepandOn;
-import org.brijframework.support.config.SingletonFactory;
+import org.brijframework.support.factories.SingletonFactory;
+import org.brijframework.support.ordering.DepandOn;
 import org.brijframework.util.factories.ReflectionFactory;
 import org.brijframework.util.reflect.InstanceUtil;
 

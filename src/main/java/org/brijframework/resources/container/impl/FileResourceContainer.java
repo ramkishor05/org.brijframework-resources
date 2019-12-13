@@ -11,7 +11,7 @@ import org.brijframework.group.Group;
 import org.brijframework.resources.container.ResourceContainer;
 import org.brijframework.resources.factory.file.FileResourceFactory;
 import org.brijframework.resources.group.FileResourceGroup;
-import org.brijframework.support.config.SingletonFactory;
+import org.brijframework.support.factories.SingletonFactory;
 import org.brijframework.util.asserts.AssertMessage;
 import org.brijframework.util.asserts.Assertion;
 import org.brijframework.util.factories.ReflectionFactory;
