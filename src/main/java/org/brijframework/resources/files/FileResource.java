@@ -13,7 +13,7 @@ import org.brijframework.resources.impl.DefaultResource;
 import org.brijframework.util.accessor.PropertyAccessorUtil;
 import org.brijframework.util.location.PathUtil;
 import org.brijframework.util.reflect.FieldUtil;
-import org.brijframework.util.support.Access;
+import org.brijframework.util.support.ReflectionAccess;
 
 public class FileResource implements DefaultResource {
 
@@ -74,7 +74,7 @@ public class FileResource implements DefaultResource {
 		AtomicInteger count=new AtomicInteger(0);
 		StringBuilder builder=new StringBuilder();
 		builder.append("{");
-		List<Field> fields=FieldUtil.getAllField(this.getClass(), Access.PRIVATE_NO_STATIC_FINAL);
+		List<Field> fields=FieldUtil.getAllField(this.getClass(), ReflectionAccess.PRIVATE_NO_STATIC_FINAL);
 		fields.forEach(field->{
 			try {
 				builder.append(field.getName()+" = "+PropertyAccessorUtil.getProperty(this, field));
