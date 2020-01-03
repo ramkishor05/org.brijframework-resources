@@ -12,7 +12,7 @@ public class ResourceContext extends AbstractModuleContext{
 	@Override
 	public void init() {
 		try {
-			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls->{
+			ReflectionFactory.getFactory().getExternalClassList().forEach(cls->{
 				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}
@@ -21,7 +21,7 @@ public class ResourceContext extends AbstractModuleContext{
 			e.printStackTrace();
 		}
 		try {
-			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls->{
+			ReflectionFactory.getFactory().getInternalClassList().forEach(cls->{
 				if(ResourceContainer.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends ResourceContainer>) cls);
 				}

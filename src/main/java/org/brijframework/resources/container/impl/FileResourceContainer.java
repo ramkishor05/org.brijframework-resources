@@ -42,7 +42,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 	@Override
 	public void init() {
 		try {
-			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getExternalClassList().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}
@@ -51,7 +51,7 @@ public class FileResourceContainer extends AbstractModuleContainer implements Re
 			e.printStackTrace();
 		}
 		try {
-			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getInternalClassList().forEach(cls -> {
 				if (FileResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends FileResourceFactory<?,?>>) cls);
 				}

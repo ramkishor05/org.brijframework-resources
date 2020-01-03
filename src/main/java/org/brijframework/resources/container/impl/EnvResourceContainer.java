@@ -27,7 +27,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 	@Override
 	public void init() {
 		try {
-			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getExternalClassList().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}
@@ -36,7 +36,7 @@ public class EnvResourceContainer extends AbstractModuleContainer implements Res
 			e.printStackTrace();
 		}
 		try {
-			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls -> {
+			ReflectionFactory.getFactory().getInternalClassList().forEach(cls -> {
 				if (EnvResourceFactory.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					register((Class<? extends EnvResourceFactory<?,?>>) cls);
 				}

@@ -25,7 +25,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 	public ResourceContextFactory loadFactory() {
 		try {
 			LoggerConsole.screen("BootstrapFactory -> "+this.getClass().getSimpleName(), "Lunching the factory for ResourceContext");
-			ReflectionFactory.getFactory().getClassListFromExternal().forEach(cls->{
+			ReflectionFactory.getFactory().getExternalClassList().forEach(cls->{
 				if(ResourceContext.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					ResourceContext resourceContext = (ResourceContext) InstanceUtil.getInstance(cls);
 					resourceContext.start();
@@ -33,7 +33,7 @@ public class ResourceContextFactory extends AbstractBootstrapFactory<String, Res
 					this.register(resourceContext.getClass().getSimpleName(), resourceContext);
 				}
 			});
-			ReflectionFactory.getFactory().getClassListFromInternal().forEach(cls->{
+			ReflectionFactory.getFactory().getInternalClassList().forEach(cls->{
 				if(ResourceContext.class.isAssignableFrom(cls) && InstanceUtil.isAssignable(cls)) {
 					ResourceContext resourceContext = (ResourceContext) InstanceUtil.getInstance(cls);
 					resourceContext.start();
